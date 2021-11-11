@@ -6,13 +6,29 @@ import { AiOutlineDownSquare } from 'react-icons/ai';
 
 
 
-const Form = () => {
-  return (
+const Form = ({inputText, setInputText, todos, setTodos}) => {
 
+  const handleInputTextHandler = (e) => {
+    e.preventDefault();
+    setInputText(e.target.value);
+  }
+  console.log(inputText)
+
+  const handleAddItems = (e) => {
+    e.preventDefault();
+    // setTodos({inputText})
+    setTodos([
+      ...todos,
+      {text: inputText, completed: false, id: Math.random() * 1000}
+    ]);
+  }
+  console.log(todos)
+
+  return (
     <form>
-      <input type = "text"></input>
+      <input type = "text" onChange = {handleInputTextHandler}></input>
       <button>
-      <AiOutlinePlusSquare/>
+      <AiOutlinePlusSquare onClick = {handleAddItems}/>
       </button>
       <div>
       <select className = "input-dropdown">
